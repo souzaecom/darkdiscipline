@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dark Knight Discipline — O Plano Mestre da Disciplina</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root {
+    --bg: #0A0C0F;
+    --panel: #12151A;
+    --line: #262B33;
+    --steel: #5B6472;
+    --text: #E7E5DE;
+    --muted: #8B93A1;
+    --amber: #E8B33D;
+    --amber-dim: rgba(232,179,61,0.14);
+    --red: #7A2E2E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.02em; }
+
+  h1, h2, h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding: 90px 0 70px;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .bat-mark {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    opacity: 0.05;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-size: 13px;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  h1.title {
+    font-size: clamp(40px, 7vw, 62px);
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .subtitle-en {
+    font-size: 15px;
+    color: var(--steel);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 24px;
+  }
+  .subtitle-pt {
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .tagline-en {
+    font-size: 14px;
+    color: var(--steel);
+    margin-top: 26px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tagline-pt {
+    font-size: 19px;
+    color: var(--amber);
+    margin-top: 6px;
+    font-weight: 500;
+    max-width: 480px;
+  }
+
+  .hero-lede {
+    margin-top: 30px;
+    font-size: 16px;
+    color: var(--text);
+    max-width: 460px;
+  }
+
+  .hero-bullets {
+    list-style: none;
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-bullets li {
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+  .hero-bullets li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-top: 8px;
+    background: var(--amber);
+    flex-shrink: 0;
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: 38px;
+    padding: 16px 30px;
+    background: var(--amber);
+    color: #14120A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border: none;
+  }
+  .cta:hover { background: #F2C766; }
+
+  /* ---------- PROBLEM SECTION ---------- */
+  section {
+    padding: 70px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-num {
+    font-size: 12px;
+    color: var(--steel);
+    margin-bottom: 14px;
+  }
+
+  h2.section-title {
+    font-size: clamp(28px, 4.5vw, 38px);
+    margin-bottom: 30px;
+    max-width: 520px;
+  }
+
+  .problem-group {
+    margin-bottom: 26px;
+  }
+  .problem-group p.lead {
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  ul.plain {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul.plain li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 14.5px;
+    color: var(--muted);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  ul.plain li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--steel);
+  }
+  ul.plain.sub li {
+    padding-left: 34px;
+    font-size: 14px;
+  }
+  ul.plain.sub li::before { left: 16px; }
+
+  .quote-block {
+    margin: 40px 0;
+    padding: 26px 28px;
+    background: var(--panel);
+    border-left: 3px solid var(--amber);
+  }
+  .quote-block p {
+    font-size: 17px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .quote-block p + p { margin-top: 8px; color: var(--amber); }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  @media (max-width: 560px) { .split { grid-template-columns: 1fr; } }
+
+  .split-col {
+    padding: 22px;
+    background: var(--panel);
+  }
+  .split-col.not { border-top: 2px solid var(--red); }
+  .split-col.is { border-top: 2px solid var(--amber); }
+  .split-col h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .split-col.not h3 { color: #B06060; }
+  .split-col.is h3 { color: var(--amber); }
+  .split-col ul { list-style: none; }
+  .split-col li {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 5px 0;
+  }
+
+  .closing-line {
+    margin-top: 30px;
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ---------- DAY CARDS ---------- */
+  .day-card {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .day-card:last-child { border-bottom: none; }
+
+  .day-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .day-num {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--amber);
+    font-size: 13px;
+  }
+  .day-title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .day-meta {
+    display: flex;
+    gap: 24px;
+    margin: 14px 0 16px;
+    font-size: 13px;
+    color: var(--steel);
+  }
+  .day-meta span b { color: var(--muted); font-weight: 500; }
+
+  .day-card ul.plain { margin-bottom: 14px; }
+
+  .day-note {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 12px;
+  }
+  .day-example {
+    margin-top: 10px;
+    font-size: 13.5px;
+    color: var(--steel);
+    padding-left: 14px;
+    border-left: 2px solid var(--line);
+  }
+
+  /* ---------- PILLAR ---------- */
+  .pillar-lead {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .pillar-lead .accent { color: var(--amber); }
+
+  .pillar-body p {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    max-width: 560px;
+  }
+
+  .key-idea {
+    margin: 30px 0;
+    padding: 20px 24px;
+    background: var(--panel);
+    border-left: 3px solid var(--steel);
+  }
+  .key-idea .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--steel);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .key-idea p { font-size: 15px; color: var(--text); font-weight: 500; }
+
+  /* ---------- PHASES ---------- */
+  .phases {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+  }
+  .phase {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+  .phase:last-child { border-bottom: 1px solid var(--line); }
+  .phase-range {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--amber);
+  }
+  .phase-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .phase-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final {
+    padding: 90px 0 100px;
+    text-align: left;
+  }
+  .final h2 {
+    font-size: clamp(30px, 5vw, 42px);
+    max-width: 540px;
+    margin-bottom: 22px;
+  }
+  .final p.lede {
+    font-size: 15.5px;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  footer {
+    padding: 30px 0 50px;
+    font-size: 12px;
+    color: var(--steel);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap hero">
+    <svg class="bat-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#E8B33D" d="M100 40c-6 10-14 16-26 18 6 4 10 9 12 15-14-4-24-2-34 8 8 2 14 6 18 12-16 2-27 10-34 24 10-4 19-4 27 0-10 8-15 18-15 30 8-8 16-12 26-12-4 10-3 20 3 29 4-9 10-15 18-18-2 10 1 19 8 26 1-9 5-16 11-21 6 5 10 12 11 21 7-7 10-16 8-26 8 3 14 9 18 18 6-9 7-19 3-29 10 0 18 4 26 12 0-12-5-22-15-30 8-4 17-4 27 0-7-14-18-22-34-24 4-6 10-10 18-12-10-10-20-12-34-8 2-6 6-11 12-15-12-2-20-8-26-18-6 10-14 16-26 18 2 6 4 12 4 18-2-6-4-12-4-18-12-2-20-8-26-18z"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="eyebrow mono">🦇 DARK KNIGHT DISCIPLINE</div>
+      <h1 class="title">DISCIPLINA DO<br/>CAVALEIRO DAS TREVAS</h1>
+
+      <div class="subtitle-en mono">THE DISCIPLINE MASTERY BLUEPRINT</div>
+      <div class="subtitle-pt">→ O Plano Mestre da Disciplina</div>
+
+      <div class="tagline-en mono">BUILD DISCIPLINE THAT SURVIVES BAD DAYS</div>
+      <div class="tagline-pt">→ Construa uma disciplina que funcione até nos dias ruins</div>
+
+      <p class="hero-lede">Um sistema prático de 30 dias para transformar ambição em ação consistente.</p>
+
+      <ul class="hero-bullets">
+        <li>Ações claras para todos os 30 dias</li>
+        <li>Desenvolvido para dias de baixa energia</li>
+        <li>Plano + livro de exercícios incluídos</li>
+      </ul>
+
+      <a href="#comecar" class="cta mono">COMECE O SISTEMA DE 30 DIAS</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <div class="section-num mono">01 — O DIAGNÓSTICO</div>
+      <h2 class="section-title">O verdadeiro problema que este livro resolve</h2>
+
+      <div class="problem-group">
+        <p class="lead">A maioria das pessoas:</p>
+        <ul class="plain">
+          <li>já sabe o que fazer</li>
+          <li>já tentou hábitos</li>
+          <li>já assistiu a vídeos</li>
+          <li>mas ainda assim:</li>
+        </ul>
+        <ul class="plain sub">
+          <li>procrastina</li>
+          <li>desiste</li>
+          <li>volta aos velhos hábitos</li>
+        </ul>
+      </div>
+
+      <div class="quote-block">
+        <p>O problema não é falta de informação.</p>
+        <p>O problema é a falta de disciplina funcional.</p>
+      </div>
+
+      <div class="problem-group">
+        <p class="lead">Este livro ajuda você a corrigir:</p>
+        <ul class="plain">
+          <li>inconsistência</li>
+          <li>procrastinação</li>
+          <li>falta de controle diário</li>
+          <li>dificuldade para tomar decisões</li>
+        </ul>
+      </div>
+
+      <p class="closing-line">Disciplina não é uma habilidade que você aprende. É construída por meio de ações repetidas.</p>
+
+      <div class="split">
+        <div class="split-col not">
+          <h3>Este livro NÃO é sobre</h3>
+          <ul>
+            <li>sentir-se motivado</li>
+            <li>começar na próxima segunda-feira</li>
+            <li>visualizar o sucesso</li>
+          </ul>
+        </div>
+        <div class="split-col is">
+          <h3>Este livro É sobre</h3>
+          <ul>
+            <li>controle</li>
+            <li>ordem</li>
+            <li>execução diária</li>
+            <li>fazer o que precisa ser feito, especialmente quando você não quer fazer</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="closing-line" style="margin-top:26px; color: var(--amber);">Sem desculpas, sem atalhos.</p>
+    </section>
+
+    <section>
+      <div class="section-num mono">02 — AMOSTRA DO SISTEMA</div>
+      <h2 class="section-title">Três dias, de dentro do plano de 30 dias</h2>
+
+      <div class="day-card">
+        <div class="day-head">
+          <span class="day-num mono">DIA 3</span>
+          <span class="day-title">Corte o Ruído da Dopamina</span>
+        </div>
+        <div class="day-meta">
+          <span><b>Objetivo:</b> reduzir a estimulação</span>
+          <span><b>Tempo:</b> 5–10 minutos</span>
+        </div>
+        <ul class="plain">
+          <li>Exclua 1 aplicativo que causa distração</li>
+          <li>Desative notificações</li>
+          <li>Não tenha entretenimento antes do trabalho</li>
+        </ul>
+        <p class="day-note">A alta estimulação reduz o foco e o autocontrole. Isso não é punição. É treinamento.</p>
+      </div>
+
+      <div class="day-card">
+        <div class="day-head">
+          <span class="day-num mono">DIA 4</span>
+          <span class="day-title">Ação Antes de Pensar</span>
+        </div>
+        <div class="day-meta">
+          <span><b>Objetivo:</b> quebrar o hábito da hesitação</span>
+          <span><b>Tempo:</b> 2–5 minutos</span>
+        </div>
+        <ul class="plain">
+          <li>Comece sua tarefa principal imediatamente</li>
+          <li>Não planeje, não otimize</li>
+        </ul>
+        <p class="day-note">A clareza vem depois da ação, não antes.</p>
+        <p class="day-example">Exemplo: abra o documento. Escreva uma linha. O impulso vem depois.</p>
+      </div>
+
+      <div class="day-card">
+        <div class="day-head">
+          <span class="day-num mono">DIA 5</span>
+          <span class="day-title">Dia do Padrão Mínimo</span>
+        </div>
+        <div class="day-meta">
+          <span><b>Objetivo:</b> manter a consistência com pouca energia</span>
+          <span><b>Tempo:</b> 5 minutos</span>
+        </div>
+        <p class="day-note" style="margin-top:0; font-style:normal; color:var(--text); font-weight:500;">Regra: faça a menor versão aceitável da tarefa.</p>
+        <ul class="plain" style="margin-top:12px;">
+          <li>5 flexões</li>
+          <li>5 minutos de trabalho</li>
+          <li>1 página lida</li>
+        </ul>
+        <p class="day-note">O crescimento vem de aparecer, não de se esforçar ao máximo.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-num mono">03 — PILAR 1</div>
+      <h2 class="section-title">Rotina — a espinha dorsal</h2>
+
+      <p class="pillar-lead">Uma rotina não é sobre produtividade. <span class="accent">É sobre controle.</span></p>
+
+      <div class="pillar-body">
+        <p><b style="color:var(--text)">Uma boa rotina:</b></p>
+        <ul class="plain" style="margin-bottom:20px;">
+          <li>remove o caos</li>
+          <li>cria previsibilidade</li>
+          <li>reduz o atrito mental</li>
+        </ul>
+        <p>Seu cérebro gosta de padrões. Quando as ações se repetem ao mesmo tempo, elas se tornam automáticas.</p>
+      </div>
+
+      <div class="key-idea">
+        <div class="label">Ideia principal</div>
+        <p>Você não precisa esperar pela motivação — você segue sua rotina.</p>
+      </div>
+
+      <div class="key-idea">
+        <div class="label">Vantagem</div>
+        <p>Mesmo nos dias ruins, sua rotina leva você adiante.</p>
+      </div>
+
+      <h3 style="font-family:'IBM Plex Sans', sans-serif; font-size:15px; font-weight:600; margin: 34px 0 14px;">Por que a rotina funciona</h3>
+      <div class="pillar-body">
+        <p>A rotina funciona porque ancora o comportamento ao tempo e ao contexto, e não à intenção. Quando uma ação ocorre em uma sequência fixa, a iniciação se torna automática e a resistência tem menos espaço para surgir.</p>
+        <p>A mente para de avaliar se uma ação deveria acontecer e passa a esperar que ela aconteça. Com o tempo, sua rotina se torna um ponto de referência comportamental que absorve flutuações de energia, foco e emoção.</p>
+        <p>Mesmo quando as condições pioram, a estrutura permanece intacta, permitindo um progresso contínuo sem depender da recalibração. O que sustenta o movimento não é a motivação, mas a confiabilidade de um padrão que se repete independentemente das circunstâncias.</p>
+      </div>
+    </section>
+
+    <section id="comecar" class="final">
+      <div class="section-num mono">04 — O SISTEMA</div>
+      <h2>Construa uma disciplina que continue funcionando quando a motivação desaparecer.</h2>
+      <p class="lede">Você já sabe o que deveria estar fazendo. O verdadeiro problema é continuar quando está cansado, distraído, entediado ou sem motivação. O Discipline Mastery Blueprint é um sistema prático de execução inspirado no cavaleiro noturno — criado para pessoas ambiciosas que têm dificuldade em manter a consistência. Em vez de depender da motivação, você constrói uma estrutura que ajuda você a agir todos os dias.</p>
+
+      <h3 style="font-family:'IBM Plex Sans', sans-serif; font-size:15px; font-weight:600; margin-bottom:6px;">Como funciona o sistema de 30 dias</h3>
+      <p style="font-size:13.5px; color:var(--steel); margin-bottom: 4px;">O programa segue quatro fases:</p>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-range mono">01–07</div>
+          <div>
+            <div class="phase-name">Corte o ruído</div>
+            <div class="phase-desc">Remove distrações e estímulos de dopamina fácil, para que a atenção volte a responder a você.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-range mono">08–15</div>
+          <div>
+            <div class="phase-name">Construa a rotina</div>
+            <div class="phase-desc">Ancora as ações principais a horários fixos, até que a execução pare de depender de decisão.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-range mono">16–23</div>
+          <div>
+            <div class="phase-name">Ação sem hesitação</div>
+            <div class="phase-desc">Treina começar antes de pensar demais, reduzindo o espaço entre o impulso e a execução.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-range mono">24–30</div>
+          <div>
+            <div class="phase-name">Consolidação</div>
+            <div class="phase-desc">Testa a estrutura contra dias ruins e baixa energia, até que ela resista sem esforço extra.</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="cta mono" style="margin-top:36px;">COMECE O SISTEMA DE 30 DIAS</a>
+    </section>
+
+    <footer class="wrap">DARK KNIGHT DISCIPLINE — THE DISCIPLINE MASTERY BLUEPRINT</footer>
+  </div>
+
+</body>
+</html>
